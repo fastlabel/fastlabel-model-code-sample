@@ -7,7 +7,7 @@
             "bottom": 878.3612670898438
         },
         "confidence_score": 0.8961721062660217,
-        "category": 0
+        "category": "person"
     },
     {
         "bbox": {
@@ -17,7 +17,7 @@
             "bottom": 867.3811645507812
         },
         "confidence_score": 0.8702478408813477,
-        "category": 0
+        "category": "person"
     },
     {
         "bbox": {
@@ -27,7 +27,7 @@
             "bottom": 912.4585571289062
         },
         "confidence_score": 0.8515625,
-        "category": 0
+        "category": "person"
     },
     {
         "bbox": {
@@ -37,7 +37,7 @@
             "bottom": 788.5167236328125
         },
         "confidence_score": 0.8493339419364929,
-        "category": 5
+        "category": "bus"
     },
     {
         "bbox": {
@@ -47,6 +47,6 @@
             "bottom": 875.3746337890625
         },
         "confidence_score": 0.534941554069519,
-        "category": 0
+        "category": "person"
     }
 ]
