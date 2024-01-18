@@ -1,0 +1,9 @@
+{
+    "image_size": {
+        "width": 1024,
+        "height": 1024
+    },
+    "device": "cpu",
+    "class_number": 4,
+    "threshold": 0.4
+}
