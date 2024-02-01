@@ -6,3 +6,4 @@ Please refer to the README in each model's directory for instructions on how to 
  - [YOLOv5](./yolov5)
  - [UNet](./unet)
  - [MaskRCNN](./mask_rcnn)
+ - [KeypointRCNN](./keypoint_rcnn)
