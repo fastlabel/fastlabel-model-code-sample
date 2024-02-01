@@ -1,0 +1,5 @@
+{
+    "device": "cpu",
+    "class_number": 3,
+    "model_config_file_path": "COCO-Keypoints/keypoint_rcnn_R_50_FPN_3x.yaml"
+}

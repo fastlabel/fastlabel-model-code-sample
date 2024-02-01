@@ -2,8 +2,6 @@ import argparse
 import json
 
 import cv2
-import numpy as np
-import pycocotools.mask as mask_util
 from detectron2 import model_zoo
 from detectron2.config import get_cfg
 from detectron2.engine import DefaultPredictor
@@ -34,6 +32,7 @@ class Inference:
     @staticmethod
     def _instances_to_coco_json(instances: Instances) -> list[dict]:
         """
+        Ref: https://detectron2.readthedocs.io/en/latest/_modules/detectron2/evaluation/coco_evaluation.html
         Dump an "Instances" object to a COCO-format json that's used for evaluation.
 
         Args:
@@ -51,22 +50,6 @@ class Inference:
         scores = instances.scores.tolist()
         classes = instances.pred_classes.tolist()
 
-        has_mask = instances.has("pred_masks")
-        if has_mask:
-            # use RLE to encode the masks, because they are too large and takes memory
-            # since this evaluator stores outputs of the entire dataset
-            rles = [
-                mask_util.encode(
-                    np.array(mask[:, :, None], order="F", dtype="uint8"))[0]
-                for mask in instances.pred_masks
-            ]
-            for rle in rles:
-                # "counts" is an array encoded by mask_util as a byte-stream. Python3's
-                # json writer which always produces strings cannot serialize a byte stream
-                # unless you decode it. Thankfully, utf-8 works out (which is also what
-                # the pycocotools/_mask.pyx does).
-                rle["counts"] = rle["counts"].decode("utf-8")
-
         has_keypoints = instances.has("pred_keypoints")
         if has_keypoints:
             keypoints = instances.pred_keypoints
@@ -79,8 +62,6 @@ class Inference:
                 "bbox": boxes[k],
                 "score": scores[k],
             }
-            if has_mask:
-                result["segmentation"] = rles[k]
             if has_keypoints:
                 # In COCO annotations,
                 # keypoints coordinates are pixel indices.
